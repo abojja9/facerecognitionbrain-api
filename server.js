@@ -36,29 +36,29 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const database ={
-    users : [
-        {
-            id: '123',
-            name: 'John',
-            email: 'john@gmail.com',
-            password: 'abhi',
-            entries: 0,
-            joined: new Date()
-        },
-        {
-            id: '124',
-            name: 'Sally',
-            email: 'sally@gmail.com',
-            password: 'bananas',
-            entries: 0,
-            joined: new Date()
-        }
-    ]
-}
+// const database ={
+//     users : [
+//         {
+//             id: '123',
+//             name: 'John',
+//             email: 'john@gmail.com',
+//             password: 'abhi',
+//             entries: 0,
+//             joined: new Date()
+//         },
+//         {
+//             id: '124',
+//             name: 'Sally',
+//             email: 'sally@gmail.com',
+//             password: 'bananas',
+//             entries: 0,
+//             joined: new Date()
+//         }
+//     ]
+// }
 
 app.get('/', (req, res) => {
-    res.send(database.users)
+    res.send('It is working!')
 })
 
 app.post('/signin', (req, res) => signin.handleSignIn(req, res, db, bcrypt));
@@ -80,8 +80,8 @@ app.post("/imageurl", (req, res) => image.handleApiCall(req, res));
 //     // result == true
 // });
 
-app.listen(3000, () => {
-   console.log('app is running on port 3000') 
+app.listen(process.env.PORT || 3000, () => {
+   console.log(`app is running on port ${process.env.PORT}`) 
 })
 
 /*
